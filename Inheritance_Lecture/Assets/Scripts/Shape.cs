@@ -4,17 +4,36 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour   //this class will act as the base class for child classes (circle, diamond)
 {
+    protected float xpos, ypos, xspeed, yspeed;
 
-    protected void MoveLeft(Rigidbody2D rb, float xspeed)
+    protected virtual void Start()
     {
-        Vector2 newspeed = new Vector2(xspeed, 0);
-        rb.velocity = -newspeed;
+        this.gameObject.transform.position = new Vector3(0f, 0f, 0f);
+    }
+    protected void MoveLeft(Rigidbody2D rb)
+    {
+        rb.velocity = new Vector2(-xspeed, 0);
     }
 
-    protected void MoveRight(Rigidbody2D rb, float xspeed)
+    protected void MoveRight(Rigidbody2D rb)
     {
-        Vector2 newspeed = new Vector2(xspeed, 0);
-        rb.velocity = newspeed;
+        rb.velocity = new Vector2(xspeed, 0);
+    }
+
+    protected void MoveUp(Rigidbody2D rb)
+    {
+        rb.velocity = new Vector2(0, yspeed);
+    }
+
+    protected void MoveDown(Rigidbody2D rb)
+    {
+        rb.velocity = new Vector2(0, -yspeed);
+    }
+
+    protected void ResetPosition(Rigidbody2D rb)
+    {
+        rb.position = new Vector2(xpos, ypos);
+
     }
 
 
