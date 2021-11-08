@@ -38,6 +38,7 @@ public abstract class GameData : MonoBehaviour  //abstract classes cannot be ins
     public static Vector3 GetMousePos()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f, 0f, 10f);
+      //  Debug.Log(mousePos);
         return mousePos;
     }
 }
