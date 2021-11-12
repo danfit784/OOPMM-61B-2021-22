@@ -7,11 +7,15 @@ public class RotatingCannon : MonoBehaviour
     Vector3 currentMousePos;
     Quaternion newrotation;
 
-    GameObject mybulletprefab;
+    Transform mycannontip; 
+
+    GameObject mysmallbulletprefab, mylargebulletprefab;
     // Start is called before the first frame update
     void Start()
     {
-        mybulletprefab = Resources.Load("SmallBullet") as GameObject;
+        mycannontip = this.gameObject.transform.GetChild(0);
+        mysmallbulletprefab = Resources.Load("SmallBullet") as GameObject;
+        mylargebulletprefab = Resources.Load("LargeBullet") as GameObject;
     }
 
     // Update is called once per frame
@@ -29,9 +33,16 @@ public class RotatingCannon : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(mybulletprefab, this.transform.position, Quaternion.identity);
+            Instantiate(mysmallbulletprefab,mycannontip.position, Quaternion.identity);
         }
-    
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Instantiate(mylargebulletprefab, mycannontip.position, Quaternion.identity);
+        }
+
+
+
     }
 
 
