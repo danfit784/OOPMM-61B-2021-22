@@ -28,7 +28,7 @@ public class RotatingCannon : MonoBehaviour
         // research and code Mathf.Clamp to limit the cannon to rotate max Euler 60 and min Euler -60
         newrotation.z = Mathf.Clamp(newrotation.z, -0.4f, +0.4f);
         newrotation.w = Mathf.Clamp(newrotation.w, 0.6f, 0.6f);
-        Debug.Log(newrotation);
+       // Debug.Log(newrotation);
         this.gameObject.transform.rotation = Quaternion.Slerp(this.gameObject.transform.rotation, newrotation, Time.deltaTime * 3f);
         
         if (Input.GetButtonDown("Fire1"))
