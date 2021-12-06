@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    ITakeDamage damageable;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        damageable = GetComponent<ITakeDamage>();
+        damageable.health = 3;
     }
 
 
@@ -24,9 +28,7 @@ public class Enemy : MonoBehaviour
 
             //TO DO SCORE CHANGE
 
-            GameManager._instance.IncreaseScore(10);
-
-            Destroy(this.gameObject);
+            damageable.TakeDamage(1);
             
            
         }

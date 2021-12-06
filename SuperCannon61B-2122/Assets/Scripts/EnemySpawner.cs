@@ -5,6 +5,22 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
 
+    public static EnemySpawner _instance;
+
+    private void Awake()
+    {
+        if (_instance == null)    //SINGLETON PATTERN
+        {
+            _instance = this;
+        }
+        else if (_instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+
     [SerializeField] List<GameObject> myenemiesList;
     // Start is called before the first frame update
     void Start()

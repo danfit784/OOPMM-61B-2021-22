@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+public interface ITakeDamage
+{
+    int health { get; set; }
+    void TakeDamage(int damage_amount);
+
+}
+
+
+
+
+
 public class GameManager : MonoBehaviour
 {
 

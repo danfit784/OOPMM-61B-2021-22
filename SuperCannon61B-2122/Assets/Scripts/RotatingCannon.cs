@@ -10,6 +10,8 @@ public class RotatingCannon : MonoBehaviour
     Transform mycannontip; 
 
     GameObject mysmallbulletprefab, mylargebulletprefab;
+
+    Coroutine smallbulletfiringCoroutine, largebulletfiringCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,20 +32,48 @@ public class RotatingCannon : MonoBehaviour
         newrotation.w = Mathf.Clamp(newrotation.w, 0.6f, 0.6f);
        // Debug.Log(newrotation);
         this.gameObject.transform.rotation = Quaternion.Slerp(this.gameObject.transform.rotation, newrotation, Time.deltaTime * 3f);
-        
+
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(mysmallbulletprefab,mycannontip.position, Quaternion.identity);
+            smallbulletfiringCoroutine = StartCoroutine(SmallBulletFiring());
         }
+        else if (Input.GetButtonUp("Fire1"))
+            StopCoroutine(smallbulletfiringCoroutine);
+
+
 
         if (Input.GetButtonDown("Fire2"))
         {
-            Instantiate(mylargebulletprefab, mycannontip.position, Quaternion.identity);
+            largebulletfiringCoroutine = StartCoroutine(LargeBulletFiring());
         }
+        else if (Input.GetButtonUp("Fire2"))
+            StopCoroutine(largebulletfiringCoroutine);
 
 
 
     }
+
+    IEnumerator SmallBulletFiring()
+    {
+        while (true)
+        {
+            Instantiate(mysmallbulletprefab, mycannontip.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
+
+    IEnumerator LargeBulletFiring()
+    {
+        while (true)
+        {
+            Instantiate(mylargebulletprefab, mycannontip.position, Quaternion.identity);
+            yield return new WaitForSeconds(1f);
+        }
+      
+    }
+
+    
 
 
 }
